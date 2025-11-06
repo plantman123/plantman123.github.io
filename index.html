@@ -1,1 +1,611 @@
-<h1>Welcome to see watered plantman</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- ================================= -->
+    <!-- 基础配置 -->
+    <!-- ================================= -->
+    <meta charset="UTF-8">
+    <!-- 响应式设计：确保在移动设备上正确显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO 优化：页面描述 -->
+    <meta name="description" content="Watered Plantman - page">
+    <!-- 页面标题 -->
+    <title>Plantman - page</title>
+    
+    <!-- ================================= -->
+    <!-- 内部样式表 -->
+    <!-- ================================= -->
+    <style>
+        /* ================================= */
+        /* 全局重置样式 */
+        /* ================================= */
+        * {
+            margin: 0;              /* 清除默认外边距 */
+            padding: 0;             /* 清除默认内边距 */
+            box-sizing: border-box; /* 盒模型：包含 padding 和 border */
+        }
+
+        /* ================================= */
+        /* CSS 变量定义：颜色主题 */
+        /* 修改这里的颜色值可以快速更换整体配色方案 */
+        /* ================================= */
+        :root {
+            --primary-color: #2d6a4f;      /* 主色调：深绿色 */
+            --secondary-color: #52b788;    /* 次要色：中绿色 */
+            --accent-color: #95d5b2;       /* 强调色：浅绿色 */
+            --text-dark: #1b4332;          /* 深色文字 */
+            --text-light: #d8f3dc;         /* 浅色文字 */
+            --bg-light: #f8f9fa;           /* 浅色背景 */
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+        }
+
+        /* ================================= */
+        /* body 标签全局样式 */
+        /* ================================= */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 字体族 */
+            line-height: 1.6;              /* 行高：提高可读性 */
+            color: var(--text-dark);       /* 文字颜色 */
+            background-color: var(--bg-light); /* 背景颜色 */
+        }
+
+        /* ================================= */
+        /* 导航栏样式 */
+        /* ================================= */
+        nav {
+            background: var(--primary-color); /* 背景色：主色调 */
+            color: white;                     /* 文字颜色：白色 */
+            padding: 1rem 0;                  /* 上下内边距 */
+            position: fixed;                  /* 固定定位：导航栏固定在顶部 */
+            width: 100%;                      /* 宽度 100% */
+            top: 0;                           /* 距离顶部 0 */
+            z-index: 1000;                    /* 层级：确保在最上层 */
+            box-shadow: var(--shadow);        /* 阴影效果 */
+        }
+
+        /* 导航栏容器：限制最大宽度并居中 */
+        nav .container {
+            max-width: 1200px;               /* 最大宽度 */
+            margin: 0 auto;                  /* 水平居中 */
+            padding: 0 20px;                 /* 左右内边距 */
+            display: flex;                   /* Flexbox 布局 */
+            justify-content: space-between;  /* 两端对齐 */
+            align-items: center;             /* 垂直居中 */
+        }
+
+        /* Logo 样式 */
+        nav .logo {
+            font-size: 1.5rem;               /* 字体大小 */
+            font-weight: bold;               /* 加粗 */
+            color: var(--text-light);        /* 文字颜色 */
+        }
+
+        /* 导航链接列表 */
+        nav ul {
+            list-style: none;                /* 去除列表标记 */
+            display: flex;                   /* Flexbox 布局 */
+            gap: 2rem;                       /* 项目间距 */
+        }
+
+        /* 导航链接样式 */
+        nav a {
+            color: var(--text-light);        /* 链接颜色 */
+            text-decoration: none;           /* 去除下划线 */
+            transition: color 0.3s;          /* 颜色过渡动画 */
+        }
+
+        /* 导航链接悬停效果 */
+        nav a:hover {
+            color: var(--accent-color);      /* 悬停时改变颜色 */
+        }
+
+        /* ================================= */
+        /* 通用容器样式 */
+        /* ================================= */
+        .container {
+            max-width: 1200px;               /* 最大宽度 */
+            margin: 0 auto;                  /* 水平居中 */
+            padding: 0 20px;                 /* 左右内边距 */
+        }
+
+        /* 通用 section 样式 */
+        section {
+            padding: 80px 0;                 /* 上下内边距 */
+            margin-top: 60px;                /* 顶部外边距：为固定导航栏留出空间 */
+        }
+
+        /* ================================= */
+        /* 首页欢迎区样式 */
+        /* ================================= */
+        .hero {
+            /* 渐变背景：从深绿到中绿，135度角 */
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;                    /* 文字颜色：白色 */
+            text-align: center;              /* 文字居中 */
+            padding: 150px 20px 100px;       /* 内边距：上 150px，左右 20px，下 100px */
+            margin-top: 0;                   /* 顶部外边距为 0 */
+        }
+
+        /* 欢迎区标题样式 */
+        .hero h1 {
+            font-size: 3rem;                 /* 字体大小：3倍根字体大小 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+            animation: fadeInUp 1s ease;     /* 渐入动画：1秒，ease 缓动 */
+        }
+
+        /* 欢迎区副标题样式 */
+        .hero p {
+            font-size: 1.3rem;               /* 字体大小 */
+            margin-bottom: 2rem;             /* 底部外边距 */
+            animation: fadeInUp 1s ease 0.2s both; /* 渐入动画：延迟 0.2秒 */
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;           /* 行内块元素 */
+            padding: 12px 30px;              /* 内边距 */
+            background: white;               /* 背景色：白色 */
+            color: var(--primary-color);     /* 文字颜色：主色调 */
+            text-decoration: none;           /* 去除下划线 */
+            border-radius: 5px;              /* 圆角 */
+            font-weight: bold;               /* 加粗 */
+            transition: transform 0.3s, box-shadow 0.3s; /* 过渡效果 */
+            animation: fadeInUp 1s ease 0.4s both; /* 渐入动画：延迟 0.4秒 */
+        }
+
+        /* 按钮悬停效果 */
+        .btn:hover {
+            transform: translateY(-2px);     /* 向上移动 2px */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 增强阴影效果 */
+        }
+
+        /* ================================= */
+        /* 关于我部分样式 */
+        /* ================================= */
+        .about {
+            background: white;               /* 背景色：白色 */
+            margin-top: 0;                   /* 顶部外边距为 0 */
+        }
+
+        /* 关于我内容布局：Grid 布局 */
+        .about-content {
+            display: grid;                   /* Grid 布局 */
+            grid-template-columns: 1fr 2fr;  /* 两列：1:2 比例 */
+            gap: 3rem;                       /* 列间距 */
+            align-items: center;             /* 垂直居中对齐 */
+        }
+
+        /* 个人头像/图标容器 */
+        .profile-img {
+            width: 250px;                    /* 宽度 */
+            height: 250px;                   /* 高度 */
+            border-radius: 50%;              /* 圆形：50% 圆角 */
+            /* 渐变背景：从中绿到浅绿 */
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            display: flex;                   /* Flexbox 布局 */
+            align-items: center;             /* 垂直居中 */
+            justify-content: center;         /* 水平居中 */
+            font-size: 4rem;                 /* emoji 图标大小 */
+            box-shadow: var(--shadow);       /* 阴影效果 */
+            margin: 0 auto;                  /* 水平居中 */
+        }
+
+        /* 关于我文字区标题 */
+        .about-text h2 {
+            font-size: 2.5rem;               /* 字体大小 */
+            color: var(--primary-color);     /* 文字颜色：主色调 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+        }
+
+        /* 关于我文字区段落 */
+        .about-text p {
+            margin-bottom: 1rem;             /* 底部外边距 */
+            color: #555;                     /* 文字颜色：灰色 */
+            font-size: 1.1rem;               /* 字体大小 */
+        }
+
+        /* ================================= */
+        /* 技能部分样式 */
+        /* ================================= */
+        .skills {
+            background: var(--bg-light);     /* 背景色：浅色背景 */
+        }
+
+        /* 技能部分标题 */
+        .skills h2 {
+            text-align: center;              /* 文字居中 */
+            font-size: 2.5rem;               /* 字体大小 */
+            color: var(--primary-color);     /* 文字颜色：主色调 */
+            margin-bottom: 3rem;             /* 底部外边距 */
+        }
+
+        /* 技能卡片网格布局 */
+        .skills-grid {
+            display: grid;                   /* Grid 布局 */
+            /* 自动适应列数：每列最小 250px，自动填充 */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;                       /* 卡片间距 */
+        }
+
+        /* 单个技能卡片样式 */
+        .skill-card {
+            background: white;               /* 背景色：白色 */
+            padding: 2rem;                   /* 内边距 */
+            border-radius: 10px;             /* 圆角 */
+            box-shadow: var(--shadow);       /* 阴影效果 */
+            transition: transform 0.3s;      /* 变换过渡效果 */
+            text-align: center;              /* 文字居中 */
+        }
+
+        /* 技能卡片悬停效果 */
+        .skill-card:hover {
+            transform: translateY(-5px);     /* 向上移动 5px */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 增强阴影 */
+        }
+
+        /* 技能卡片标题 */
+        .skill-card h3 {
+            color: var(--primary-color);     /* 文字颜色：主色调 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+            font-size: 1.5rem;               /* 字体大小 */
+        }
+
+        /* 技能图标样式 */
+        .skill-icon {
+            font-size: 3rem;                 /* 图标大小 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+        }
+
+        /* ================================= */
+        /* 项目展示部分样式 */
+        /* ================================= */
+        .projects {
+            background: white;               /* 背景色：白色 */
+        }
+
+        /* 项目部分标题 */
+        .projects h2 {
+            text-align: center;              /* 文字居中 */
+            font-size: 2.5rem;               /* 字体大小 */
+            color: var(--primary-color);     /* 文字颜色：主色调 */
+            margin-bottom: 3rem;             /* 底部外边距 */
+        }
+
+        /* 项目卡片网格布局 */
+        .project-grid {
+            display: grid;                   /* Grid 布局 */
+            /* 自动适应列数：每列最小 300px */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;                       /* 卡片间距 */
+        }
+
+        /* 单个项目卡片样式 */
+        .project-card {
+            background: var(--bg-light);     /* 背景色：浅色背景 */
+            border-radius: 10px;             /* 圆角 */
+            overflow: hidden;                /* 隐藏溢出内容：用于圆角效果 */
+            box-shadow: var(--shadow);       /* 阴影效果 */
+            transition: transform 0.3s;      /* 变换过渡效果 */
+        }
+
+        /* 项目卡片悬停效果 */
+        .project-card:hover {
+            transform: translateY(-5px);     /* 向上移动 5px */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* 增强阴影 */
+        }
+
+        /* 项目图片/图标容器 */
+        .project-img {
+            width: 100%;                     /* 宽度 100% */
+            height: 200px;                   /* 固定高度 */
+            /* 渐变背景：从中绿到浅绿 */
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            display: flex;                   /* Flexbox 布局 */
+            align-items: center;             /* 垂直居中 */
+            justify-content: center;         /* 水平居中 */
+            font-size: 3rem;                 /* 图标大小 */
+        }
+
+        /* 项目信息区域 */
+        .project-info {
+            padding: 1.5rem;                 /* 内边距 */
+        }
+
+        /* 项目标题 */
+        .project-info h3 {
+            color: var(--primary-color);     /* 文字颜色：主色调 */
+            margin-bottom: 0.5rem;           /* 底部外边距 */
+        }
+
+        /* 项目描述 */
+        .project-info p {
+            color: #666;                     /* 文字颜色：灰色 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+        }
+
+        /* 项目链接样式 */
+        .project-link {
+            color: var(--secondary-color);   /* 链接颜色：次要色 */
+            text-decoration: none;           /* 去除下划线 */
+            font-weight: bold;               /* 加粗 */
+        }
+
+        /* 项目链接悬停效果 */
+        .project-link:hover {
+            text-decoration: underline;      /* 悬停时显示下划线 */
+        }
+
+        /* ================================= */
+        /* 联系方式部分样式 */
+        /* ================================= */
+        .contact {
+            background: var(--primary-color); /* 背景色：主色调 */
+            color: white;                     /* 文字颜色：白色 */
+        }
+
+        /* 联系方式部分标题 */
+        .contact h2 {
+            text-align: center;              /* 文字居中 */
+            font-size: 2.5rem;               /* 字体大小 */
+            margin-bottom: 3rem;             /* 底部外边距 */
+        }
+
+        /* 联系方式信息网格布局 */
+        .contact-info {
+            display: grid;                   /* Grid 布局 */
+            /* 自动适应列数：每列最小 250px */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;                       /* 项目间距 */
+            text-align: center;              /* 文字居中 */
+        }
+
+        /* 单个联系方式项 */
+        .contact-item {
+            padding: 2rem;                   /* 内边距 */
+        }
+
+        /* 联系方式图标 */
+        .contact-item-icon {
+            font-size: 2.5rem;               /* 图标大小 */
+            margin-bottom: 1rem;             /* 底部外边距 */
+        }
+
+        /* 联系方式标题 */
+        .contact-item h3 {
+            margin-bottom: 0.5rem;           /* 底部外边距 */
+        }
+
+        /* 联系方式链接 */
+        .contact-item a {
+            color: var(--accent-color);      /* 链接颜色：强调色 */
+            text-decoration: none;           /* 去除下划线 */
+        }
+
+        /* 联系方式链接悬停效果 */
+        .contact-item a:hover {
+            text-decoration: underline;      /* 悬停时显示下划线 */
+        }
+
+        /* ================================= */
+        /* 页脚样式 */
+        /* ================================= */
+        footer {
+            background: var(--text-dark);    /* 背景色：深色 */
+            color: white;                    /* 文字颜色：白色 */
+            text-align: center;              /* 文字居中 */
+            padding: 2rem 0;                 /* 上下内边距 */
+        }
+
+        /* ================================= */
+        /* 动画效果定义 */
+        /* ================================= */
+        /* 渐入向上动画：从底部淡入并向上移动 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;                  /* 初始透明度：0（完全透明） */
+                transform: translateY(30px); /* 初始位置：向下偏移 30px */
+            }
+            to {
+                opacity: 1;                  /* 最终透明度：1（完全不透明） */
+                transform: translateY(0);    /* 最终位置：正常位置 */
+            }
+        }
+
+        /* ================================= */
+        /* 响应式设计：平板设备 */
+        /* 屏幕宽度小于等于 768px 时应用 */
+        /* ================================= */
+        @media (max-width: 768px) {
+            /* 导航栏链接间距减小 */
+            nav ul {
+                gap: 1rem;
+            }
+
+            /* 首页标题字体缩小 */
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            /* 首页副标题字体缩小 */
+            .hero p {
+                font-size: 1rem;
+            }
+
+            /* 关于我部分改为单列布局 */
+            .about-content {
+                grid-template-columns: 1fr;  /* 单列 */
+                text-align: center;          /* 文字居中 */
+            }
+
+            /* 技能和项目改为单列布局 */
+            .skills-grid,
+            .project-grid {
+                grid-template-columns: 1fr;  /* 单列 */
+            }
+
+            /* section 内边距减小 */
+            section {
+                padding: 50px 0;
+            }
+        }
+
+        /* ================================= */
+        /* 响应式设计：手机设备 */
+        /* 屏幕宽度小于等于 480px 时应用 */
+        /* ================================= */
+        @media (max-width: 480px) {
+            /* 导航栏改为垂直布局 */
+            nav .container {
+                flex-direction: column;      /* 垂直排列 */
+                gap: 1rem;                   /* 项目间距 */
+            }
+
+            /* 导航链接改为垂直布局 */
+            nav ul {
+                flex-direction: column;      /* 垂直排列 */
+                gap: 0.5rem;                 /* 间距减小 */
+                text-align: center;          /* 文字居中 */
+            }
+        }
+    </style>
+</head>
+
+<!-- ================================= -->
+<!-- HTML 主体内容 -->
+<!-- ================================= -->
+<body>
+    <!-- ================================= -->
+    <!-- 导航栏：固定在页面顶部 -->
+    <!-- ================================= -->
+    <nav>
+        <div class="container">
+            <!-- Logo：使用 emoji 图标 + 文字 -->
+            <div class="logo">🌱 Plantman</div>
+            <!-- 导航链接列表 -->
+            <ul>
+                <li><a href="https://plantman123.github.io/">home</a></li>
+                <li><a href="#about">about me</a></li>
+                <li><a href="#skills">skills</a></li>
+                <li><a href="https://github.com/plantman123">Projects</a></li>
+                <li><a href="">contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ================================= -->
+    <!-- 首页欢迎区：渐变背景的欢迎横幅 -->
+    <!-- ================================= -->
+    <section id="home" class="hero">
+        <div class="container">
+            <!-- 主标题：欢迎语 -->
+            <h1>Welcome to see plantman</h1>
+            <!-- 副标题：个人简介 -->
+            <p>A plantman in the code world | Love technology and nature</p>
+            <!-- 行动按钮：点击后跳转到关于部分 -->
+            <a href="#about" class="btn">了解更多</a>
+        </div>
+    </section>
+
+    <!-- ================================= -->
+    <!-- 关于我：个人介绍和描述 -->
+    <!-- ================================= -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <!-- 左侧：个人头像/图标 -->
+                <div class="profile-img">
+                    🌱
+                </div>
+                <!-- 右侧：个人介绍文字 -->
+                <div class="about-text">
+                    <h2>about me</h2>
+                    <p>Hello! I'm Plantman, a developer in programming.</p>
+                    <p>Here keeps my projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================= -->
+    <!-- 联系方式：展示各种联系方式 -->
+    <!-- ================================= -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>contact me</h2>
+            <div class="contact-info">
+                <!-- 联系方式1：邮箱 -->
+                <div class="contact-item">
+                    <div class="contact-item-icon">📧</div>
+                    <h3>email</h3>
+                    <!-- 邮箱链接：点击可打开邮件客户端 -->
+                    <a href="mailto:hezik19800388562@outlook.com">hezik19800388562@outlook.com</a>
+                </div>
+                <!-- 联系方式2：GitHub -->
+                <div class="contact-item">
+                    <div class="contact-item-icon">💼</div>
+                    <h3>GitHub</h3>
+                    <!-- GitHub 链接：在新标签页打开 -->
+                    <a href="https://github.com/plantman123" target="_blank">github.com/plantman123</a>
+                </div>
+                <!-- 联系方式3：社交媒体 -->
+                <div class="contact-item">
+                    <div class="contact-item-icon">🐦</div>
+                    <h3>wechat</h3>
+                    <!-- 社交媒体链接：可替换为实际链接 -->
+                    <a href="#" target="_blank">@dplantman</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================= -->
+    <!-- 页脚：版权信息 -->
+    <!-- ================================= -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Plantman. Keep watering for growing.🌱</p>
+        </div>
+    </footer>
+
+    <!-- ================================= -->
+    <!-- JavaScript 交互脚本 -->
+    <!-- ================================= -->
+    <script>
+        // ========================================
+        // 功能1：平滑滚动
+        // 点击导航链接时，平滑滚动到对应的部分
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            // 为每个以 # 开头的链接添加点击事件监听器
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // 阻止默认的跳转行为
+                // 获取目标元素（通过链接的 href 属性）
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // 平滑滚动到目标元素
+                    target.scrollIntoView({
+                        behavior: 'smooth',  // 平滑滚动效果
+                        block: 'start'       // 对齐到视口顶部
+                    });
+                }
+            });
+        });
+
+        // ========================================
+        // 功能2：导航栏滚动效果
+        // 页面滚动时，改变导航栏的背景透明度
+        // ========================================
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav'); // 获取导航栏元素
+            // 如果页面滚动超过 100px
+            if (window.scrollY > 100) {
+                // 设置半透明背景
+                nav.style.background = 'rgba(45, 106, 79, 0.95)';
+            } else {
+                // 恢复原始背景色
+                nav.style.background = 'var(--primary-color)';
+            }
+        });
+    </script>
+</body>
+</html>
